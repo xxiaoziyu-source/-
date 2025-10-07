@@ -1,0 +1,184 @@
+local Translations = {
+   --["这里填要替换的英文"] = "这里填中文",
+    ["Gameplay Settings"] = "游戏性设置",
+["Settings"] = "设置",
+["Animation"] = "动画",
+["Other"] = "其他",
+["Change Animation V2"] = "更改动画 V2",
+["Anim Skill Old"] = "旧动画技能",
+["Anim Skill New"] = "新动画技能",
+["AutoBlock"] = "自动格挡",
+["Skills & Selector"] = "技能与选择器",
+["Instant ProximityPrompt"] = "即时接近提示",
+["Unload Script"] = "卸载脚本",
+["Lock WalkSpeedModifier"] = "锁定行走速度修正器",
+["Enable Custom MaxStamina"] = "启用自定义最大耐力",
+["Custom MaxStamina (0-999999)"] = "自定义最大耐力（0-999999）",
+["Anti-Artful Walls"] = "反巧妙墙壁",
+["Implement Fast Artful"] = "实现快速巧妙",
+["Speed Settings"] = "速度设置",
+["Enable Dash"] = "启用冲刺",
+["Dash Size"] = "冲刺大小",
+["Enable Banana"] = "启用香蕉",
+["Banana Size"] = "香蕉大小",
+["Enable BonusPad"] = "启用奖励垫",
+["BonusPad Size"] = "奖励垫大小",
+["Enable Adrenaline"] = "启用肾上腺素",
+["Adrenaline Size"] = "肾上腺素大小",
+["Taunt Size"] = "嘲讽大小",
+["Enable Cloak"] = "启用隐身",
+["Cloak Size"] = "隐身大小",
+["Enable Punch"] = "启用拳击",
+["Punch Size"] = "拳击大小",
+["Enable Caretaker"] = "启用管理员",
+["Caretaker Size"] = "管理员大小",
+["Enable Hotdog"] = "启用热狗",
+["Hotdog Size"] = "热狗大小",
+["Enable Taunt"] = "启用嘲讽",
+["Select Skill1"] = "选择技能1",
+["Revolver"] = "左轮手枪",
+["Select Skill2"] = "选择技能2",
+["Caretaker"] = "管理员",
+["Select Skills"] = "选择技能",
+["Enable Revolver"] = "启用左轮手枪",
+["Revolver Size"] = "左轮手枪大小",
+["Killer ESP"] = "杀手透视",
+["Ghost ESP"] = "幽灵透视",
+["Delete Block (Animation)"] = "删除格挡（动画）",
+["Show Cooldown"] = "显示冷却",
+["Enable Pursuer"] = "启用追踪者",
+["Enable Harken"] = "启用哈肯",
+["Enable Killdroid"] = "启用杀戮机器人",
+["Enable Badware"] = "启用恶意软件",
+["Enable Artful"] = "启用巧妙",
+["Block Distance"] = "格挡距离",
+["WalkSpeed"] = "行走速度",
+["Enable WalkSpeed"] = "启用行走速度",
+["SprintSpeed"] = "冲刺速度",
+["Enable Sprint"] = "启用冲刺",
+["Survivor ESP"] = "幸存者透视",
+["Enable ESP"] = "启用透视",
+["Show Name"] = "显示名称",
+["Show HP"] = "显示生命值",
+["Show Fill"] = "显示填充",
+["Fill Color"] = "填充颜色",
+["Fill Transparency"] = "填充透明度",
+["Show Outline"] = "显示轮廓",
+["Outline Color"] = "轮廓颜色",
+["Outline Transparency"] = "轮廓透明度"
+}
+
+local function translateText(text)
+    if not text or type(text) ~= "string" then return text end
+    
+    if Translations[text] then
+        return Translations[text]
+    end
+    
+    for en, cn in pairs(Translations) do
+        if text:find(en) then
+            return text:gsub(en, cn)
+        end
+    end
+    
+    return text
+end
+
+local function setupTranslationEngine()
+    local success, err = pcall(function()
+        local oldIndex = getrawmetatable(game).__newindex
+        setreadonly(getrawmetatable(game), false)
+        
+        getrawmetatable(game).__newindex = newcclosure(function(t, k, v)
+            if (t:IsA("TextLabel") or t:IsA("TextButton") or t:IsA("TextBox")) and k == "Text" then
+                v = translateText(tostring(v))
+            end
+            return oldIndex(t, k, v)
+        end)
+        
+        setreadonly(getrawmetatable(game), true)
+    end)
+    
+    if not success then
+        warn("元表劫持失败:", err)
+       
+        local translated = {}
+        local function scanAndTranslate()
+            for _, gui in ipairs(game:GetService("CoreGui"):GetDescendants()) do
+                if (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui] then
+                    pcall(function()
+                        local text = gui.Text
+                        if text and text ~= "" then
+                            local translatedText = translateText(text)
+                            if translatedText ~= text then
+                                gui.Text = translatedText
+                                translated[gui] = true
+                            end
+                        end
+                    end)
+                end
+            end
+            
+            local player = game:GetService("Players").LocalPlayer
+            if player and player:FindFirstChild("PlayerGui") then
+                for _, gui in ipairs(player.PlayerGui:GetDescendants()) do
+                    if (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui] then
+                        pcall(function()
+                            local text = gui.Text
+                            if text and text ~= "" then
+                                local translatedText = translateText(text)
+                                if translatedText ~= text then
+                                    gui.Text = translatedText
+                                    translated[gui] = true
+                                end
+                            end
+                        end)
+                    end
+                end
+            end
+        end
+        
+        local function setupDescendantListener(parent)
+            parent.DescendantAdded:Connect(function(descendant)
+                if descendant:IsA("TextLabel") or descendant:IsA("TextButton") or descendant:IsA("TextBox") then
+                    task.wait(0.1)
+                    pcall(function()
+                        local text = descendant.Text
+                        if text and text ~= "" then
+                            local translatedText = translateText(text)
+                            if translatedText ~= text then
+                                descendant.Text = translatedText
+                            end
+                        end
+                    end)
+                end
+            end)
+        end
+        
+        pcall(setupDescendantListener, game:GetService("CoreGui"))
+        local player = game:GetService("Players").LocalPlayer
+        if player and player:FindFirstChild("PlayerGui") then
+            pcall(setupDescendantListener, player.PlayerGui)
+        end
+        
+        while true do
+            scanAndTranslate()
+            task.wait(3)
+        end
+    end
+end
+
+task.wait(2)
+
+setupTranslationEngine()
+
+local success, err = pcall(function()
+--这下面填加载外部脚本
+loadstring(game:HttpGet("https://raw.githubusercontent.com/tranvanxanh0502-afk/Die-Oof-Death/refs/heads/main/Die-Oof-Death.lua"))()
+
+
+end)
+
+if not success then
+    warn("加载失败:", err)
+end
