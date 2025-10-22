@@ -1,0 +1,498 @@
+local Translations = {
+   --["这里填要替换的英文"] = "这里填中文",
+    ["Cps natural"] = "Cps 自然",
+    ["晓月lol"] = "○○汉化",
+    ["by"] = "⁹⁹",
+["Combat"] = "战斗",
+["Main"] = "主界面",
+["Auto"] = "自动",
+["Tree"] = "树木",
+["Esp"] = "显示",
+["Bring"] = "获取",
+["Teleport"] = "传送",
+["Player"] = "玩家",
+["Taming"] = "驯服",
+["Info"] = "信息",
+["Aura"] = "光环",
+["Kill Aura"] = "击杀光环",
+["Chop Aura"] = "砍伐光环",
+["Kill Player"] = "击杀玩家",
+["Select Target"] = "选择目标",
+["Target Myself"] = "以自己为目标",
+["Settings"] = "设置",
+["Kill Aura Radius"] = "击杀光环范围",
+["Chop Aura Radius"] = "砍伐光环范围",
+["God Mode"] = "无敌模式",
+["Map"] = "地图",
+["Discover Full Map"] = "探索全地图",
+["Load Map"] = "加载地图",
+["Auto Feed"] = "自动进食",
+["Select Food"] = "选择食物",
+["Choose the food"] = "选择食物",
+["Feed %"] = "进食阈值(%)",
+["Eat when hunger reaches this %"] = "饥饿度达到此百分比时进食",
+["Apple"] = "苹果",
+["Berry"] = "浆果",
+["Carrot"] = "胡萝卜",
+["Cake"] = "蛋糕",
+["Chili"] = "辣椒",
+["Cooked Morsel"] = "熟小块肉",
+["Cooked Steak"] = "熟牛排",
+["Stun System"] = "眩晕系统",
+["Auto Stun Deer"] = "自动眩晕鹿",
+["Auto Stun Ram"] = "自动眩晕公羊",
+["Misc"] = "杂项",
+["Instant Interact"] = "即时交互",
+["Auto Collect Chests"] = "自动收集宝箱",
+["Auto Upgrade Campfire"] = "自动升级营火",
+["Choose the items"] = "选择物品",
+["Auto Cook Food"] = "自动烹饪食物",
+["Log"] = "原木",
+["Coal"] = "煤炭",
+["Fuel Canister"] = "燃料罐",
+["Oil Barrel"] = "油桶",
+["Biofuel"] = "生物燃料",
+["Morsel"] = "小块肉",
+["Steak"] = "牛排",
+["Auto Scrap"] = "自动拆解",
+["Select Scrap Items"] = "选择拆解物品",
+["Choose items to scrap"] = "选择要拆解的物品",
+["Child Rescue"] = "儿童救援",
+["Auto Grab Children"] = "自动抓取儿童",
+["Sacrifice"] = "献祭",
+["Auto Sacrifice"] = "自动献祭",
+["Fishing"] = "钓鱼",
+["Auto Fish"] = "自动钓鱼",
+["Bring Scrap Items"] = "获取拆解物品",
+["Other"] = "其他",
+["Select Other Items"] = "选择其他物品",
+["Refresh Other Items"] = "刷新其他物品",
+["Bring Other Items"] = "获取其他物品",
+["Select Food Items"] = "选择食物物品",
+["Bring Food Items"] = "获取食物物品",
+["Medicine"] = "医疗",
+["Select Medical Items"] = "选择医疗物品",
+["Bring Medical Items"] = "获取医疗物品",
+["Equipment"] = "装备",
+["Select Equipment Items"] = "选择装备物品",
+["Bring Equipment Items"] = "获取装备物品",
+["Junk"] = "杂物",
+["Select Junk Items"] = "选择杂物物品",
+["Bring Junk Items"] = "获取杂物物品",
+["Fuel"] = "燃料",
+["Select Fuel Items"] = "选择燃料物品",
+["Bring Fuel Items"] = "获取燃料物品",
+["Iron Body"] = "铁制身躯",
+["Leather Armor"] = "皮革护甲",
+["MadKit"] = "疯狂工具包",
+["Old Car Engine"] = "旧汽车引擎",
+["Bandage"] = "绷带",
+["Bolt"] = "螺栓",
+["Broken Fan"] = "损坏的风扇",
+["Broken Microwave"] = "损坏的微波炉",
+["Chair"] = "椅子",
+["Coin Stack"] = "硬币堆",
+["Esp Items"] = "显示物品",
+["Enable Esp"] = "启用显示",
+["Esp Entity"] = "显示实体",
+["Start Planting"] = "开始种植",
+["Planting"] = "种植",
+["Planting Origin"] = "种植原点",
+["Shape"] = "形状",
+["Square"] = "正方形",
+["Custom Text"] = "自定义文本",
+["Enter text to plant (for CustomText shape)"] = "输入要种植的文本（适用于自定义文本形状）",
+["Locked"] = "已锁定",
+["Enter text here"] = "在此输入文本",
+["Size"] = "尺寸",
+["Spacing"] = "间距",
+["Y Offset"] = "Y轴偏移",
+["Speed"] = "速度",
+["Fast"] = "快速",
+["Tyre"] = "轮胎",
+["Sheet Metal"] = "金属板",
+["Old Radio"] = "旧收音机",
+["Washing Machine"] = "洗衣机",
+["Refresh List"] = "刷新列表",
+["Teleport to Chest"] = "传送至宝箱",
+["Teleport to Stronghold"] = "传送至要塞",
+["Children"] = "儿童",
+["Select Child"] = "选择儿童",
+["Teleport to Child"] = "传送至儿童",
+["Chest"] = "宝箱",
+["Movement"] = "移动",
+["Fly Speed"] = "飞行速度",
+["Enable Fly"] = "启用飞行",
+["Enable Speed"] = "启用加速",
+["Noclip"] = "穿墙模式",
+["Inf Jump"] = "无限跳跃",
+["Visual"] = "视觉",
+["Fullbright"] = "全亮度",
+["Performance"] = "性能",
+["Unload Characters"] = "卸载角色",
+["Unload 3D Objects"] = "卸载3D物体",
+["Low Graphics"] = "低画质",
+["Taming Items"] = "驯服物品",
+["Select Taming Items"] = "选择驯服物品",
+["Choose items for taming"] = "选择用于驯服的物品",
+["Bring Taming Items"] = "获取驯服物品",
+["Bring Old Taming Flute"] = "获取旧驯服长笛",
+["Script Information"] = "脚本信息",
+["CPS Natural"] = "CPS 自然",
+["By MrPopCat14"] = "由 MrPopCat14 制作",
+["Discord Server"] = "Discord 服务器",
+["Copy Discord Link"] = "复制 Discord 链接",
+["Version"] = "版本",
+["Welcome, 917325qwe"] = "欢迎，917325qwe",
+["report bugs to me on my discord or any suggestions you have"] = "在我的Discord上向我反馈漏洞，或提出你的建议",
+["Copy invite"] = "复制邀请链接",
+["Okay"] = "确认",
+["IMPORTANT!"] = "重要提示！",
+["check out nazuro.xyz for more scripts!"] = "访问nazuro.xyz获取更多脚本！",
+["99 nights"] = "99夜",
+["v0.14"] = "版本0.14",
+["Free"] = "免费",
+["nazureo.xyz"] = "nazureo.xyz",
+["Search"] = "搜索",
+["Home"] = "主页",
+["Fun stuff"] = "趣味功能",
+["Campfire"] = "营火",
+["Game Info"] = "游戏信息",
+["Day 1"] = "第1天",
+["Time till night: 1:57"] = "距离夜晚还有1:57",
+["Hunger: 94%"] = "饥饿度：94%",
+["Stronghold: ??? (Undiscovered)"] = "要塞：???（未发现）",
+["combat"] = "战斗",
+["Select Tree to Chop"] = "选择要砍伐的树木",
+["Choose which tree type the chop aura targets"] = "选择砍伐光环针对的树木类型",
+["Small Tree"] = "小型树木",
+["Chop Aura Range"] = "砍伐光环范围",
+["TreeBig1"] = "大型树木1",
+["TreeBig2"] = "大型树木2",
+["TreeBig3"] = "大型树木3",
+["Tree Health ESP"] = "树木生命值显示",
+["Kill Aura Range"] = "击杀光环范围",
+["Meteor Aura"] = "陨石光环",
+["Meteor Aura Range"] = "陨石光环范围",
+["Meteor ESP"] = "陨石显示",
+["Hunger"] = "饥饿度",
+["Choose the food to auto-eat"] = "选择自动食用的食物",
+["Start Eating %"] = "开始进食阈值(%)",
+["Stop Eating %"] = "停止进食阈值(%)",
+["Auto Eat"] = "自动进食",
+["Shredding"] = "粉碎",
+["Select Wood Items"] = "选择木材物品",
+["Auto shred Wood"] = "自动粉碎木材",
+["Select Metal Items"] = "选择金属物品",
+["Auto shred Metal"] = "自动粉碎金属",
+["Corn"] = "玉米",
+["Dinner"] = "晚餐",
+["Mackerel"] = "鲭鱼",
+["Ribs"] = "肋骨",
+["Salmon"] = "三文鱼",
+["Stew"] = "炖菜",
+["extra things"] = "额外功能",
+["Quick Interact"] = "快速交互",
+["Auto Open All Chests"] = "自动打开所有宝箱",
+["Opens any chest you're close to"] = "打开你靠近的所有宝箱",
+["Auto Build Anvil"] = "自动建造铁砧",
+["Air Walk"] = "空中行走",
+["Air Walk Height"] = "空中行走高度",
+["Notify Ram/Deer Spawns"] = "通知公羊/鹿刷新",
+["Force Remove Flashlight"] = "强制移除手电筒",
+["Literally deletes flashlight from your inventory"] = "直接从你的背包中删除手电筒",
+["Auto Collect"] = "自动收集",
+["Auto Collect Coins"] = "自动收集硬币",
+["Collect all Coin Stacks"] = "收集所有硬币堆",
+["Auto Collect Diamonds"] = "自动收集钻石",
+["Open chests and collect diamonds instantly"] = "打开宝箱并立即收集钻石",
+["Auto Sacrifice Cultists"] = "自动献祭信徒",
+["Bring Settings"] = "获取设置",
+["Bring To"] = "获取至",
+["Refresh Player List"] = "刷新玩家列表",
+["Spread Out Items"] = "分散物品",
+["Notify for every item brought"] = "每获取一个物品就通知",
+["Bring all"] = "获取全部",
+["Max Amount Per Item"] = "每件物品最大数量",
+["if u put 1 it bring 1 of every item"] = "若填1，则每件物品获取1个",
+["Bring Every Item"] = "获取每件物品",
+["Stop Bringing Items"] = "停止获取物品",
+["Choose items to bring"] = "选择要获取的物品",
+["Amount for Junk"] = "杂物数量",
+["How many of each selected junk item"] = "每个选中杂物物品的数量",
+["Alpha Wolf Pelt"] = "阿尔法狼皮",
+["Artic Fox Pelt"] = "北极狐皮",
+["Bunny Foot"] = "兔子脚",
+["Cultist Experiment"] = "信徒实验品",
+["Cultist Gem"] = "信徒宝石",
+["Cultist Prototype"] = "信徒原型",
+["Gem Of The Forest"] = "森林宝石",
+["Gem of the Forest Fragment"] = "森林宝石碎片",
+["Gold Shard"] = "金碎片",
+["Meteor Shard"] = "陨石碎片",
+["Polarbear Pelt"] = "北极熊皮",
+["Mobs"] = "生物",
+["Select Mobs"] = "选择生物",
+["Choose mobs to bring"] = "选择要获取的生物",
+["Amount for Mobs"] = "生物数量",
+["How many of each selected mob"] = "每个选中生物的数量",
+["Bring Selected Mobs"] = "获取选中生物",
+["Amount for Fuel"] = "燃料数量",
+["How many of each selected fuel item"] = "每个选中燃料物品的数量",
+["Amount for Food"] = "食物数量",
+["How many of each selected food item"] = "每个选中食物物品的数量",
+["Medical"] = "医疗",
+["Amount of medical things"] = "医疗物品数量",
+["How many of each selected medical item"] = "每个选中医疗物品的数量",
+["main tools"] = "主要工具",
+["Select Items"] = "选择物品",
+["Amount of tools"] = "工具数量",
+["How many of each selected item"] = "每个选中物品的数量",
+["Bring Items"] = "获取物品",
+["Kids"] = "儿童",
+["Select Kids"] = "选择儿童",
+["Put kid in sack and teleport to campfire"] = "将儿童放入麻袋并传送至营火",
+["Bring Kids"] = "获取儿童",
+["Random Tip"] = "随机提示",
+["Tutorial"] = "教程",
+["[1] Plant a sapling anywhere it doesnt matter just plant one somewhere."] = "[1] 任意位置种植树苗，随便种在哪里都可以。",
+["[2] Choose where to plant (Player or Fire)."] = "[2] 选择种植位置（玩家或营火）。",
+["[3] Select the shape, size, spacing, height, and speed."] = "[3] 选择形状、尺寸、间距、高度和速度。",
+["[4] Click the 'Start Planting' button to begin. Custom text is for premium users only."] = "[4] 点击“开始种植”按钮启动。自定义文本仅适用于高级用户。",
+["Planting place"] = "种植位置",
+["Fill Shape"] = "填充形状",
+["Border Only"] = "仅边框",
+["Enter text to plant (premium users only)"] = "输入要种植的文本（仅高级用户）",
+["How far the shape extends from the center"] = "形状从中心延伸的距离",
+["Distance between each planted tree"] = "每棵种植树木之间的距离",
+["Height"] = "高度",
+["Y offset of planted trees"] = "种植树木的Y轴偏移",
+["Upgrade Campfire"] = "升级营火",
+["Fuel Items"] = "燃料物品",
+["Enable Auto Upgrade"] = "启用自动升级",
+["select Food"] = "选择食物",
+["Crock Pot"] = "炖锅",
+["Select Crock Pot Food"] = "选择炖锅食物",
+["auto use crock pot"] = "自动使用炖锅",
+["Biofuel machine"] = "生物燃料机器",
+["auto use biofuel machine"] = "自动使用生物燃料机器",
+["Gear ESP"] = "装备显示",
+["Enable Gear ESP"] = "启用装备显示",
+["UFO ESP"] = "不明飞行物显示",
+["Enable UFO ESP"] = "启用不明飞行物显示",
+["Resources ESP"] = "资源显示",
+["Enable Resources ESP"] = "启用资源显示",
+["Food ESP"] = "食物显示",
+["Enable Food ESP"] = "启用食物显示",
+["Weapons ESP"] = "武器显示",
+["Enable Weapons ESP"] = "启用武器显示",
+["Misc ESP"] = "杂项显示",
+["Enable Misc ESP"] = "启用杂项显示",
+["Mobs ESP"] = "生物显示",
+["Enable Mobs ESP"] = "启用生物显示",
+["Lost Children ESP"] = "失踪儿童显示",
+["Enable Lost Children ESP"] = "启用失踪儿童显示",
+["taming"] = "驯服",
+["auto tame pets"] = "自动驯服宠物",
+["Teleport to Taming Tent"] = "传送至驯服帐篷",
+["Always Perfect Cast"] = "始终完美抛竿",
+["Teleport to place"] = "传送至位置",
+["Choose a child to teleport to"] = "选择要传送至的儿童",
+["Teleport to Selected Child"] = "传送至选中儿童",
+["Refresh Kid List"] = "刷新儿童列表",
+["Select Chest"] = "选择宝箱",
+["Bring Selected Chests"] = "获取选中宝箱",
+["Teleport to Selected Chest"] = "传送至选中宝箱",
+["Refresh Chest List"] = "刷新宝箱列表",
+["Select Player"] = "选择玩家",
+["Teleport to Player"] = "传送至玩家",
+["Walk Speed"] = "行走速度",
+["Changes player walk speed"] = "改变玩家行走速度",
+["Infinite Jump"] = "无限跳跃",
+["Zero Gravity"] = "零重力",
+["FOV"] = "视野",
+["No Fog"] = "无雾气",
+["Fly Keybind"] = "飞行按键绑定",
+["Keybind to toggle fly"] = "用于切换飞行的按键绑定",
+["Anti Void"] = "防虚空",
+["mobile Fly"] = "移动设备飞行",
+["Disable night effect"] = "禁用夜晚效果",
+["Full Bright"] = "全亮度",
+["settings"] = "设置",
+["Nazuro"] = "Nazuro",
+["Member Count: 1514"] = "成员数：1514",
+["Online Count: 134"] = "在线数：134",
+["copy Discord invite"] = "复制Discord邀请链接",
+["fps"] = "帧率",
+["Select Folder"] = "选择文件夹",
+["Select Items to Delete"] = "选择要删除的物品",
+["Refresh item List"] = "刷新物品列表",
+["Delete Selected Items"] = "删除选中物品",
+["Restore Items"] = "恢复物品",
+["FPS Boost (not minez)"] = "帧率提升（非minez）",
+["Infinite yield"] = "无限收益",
+["Anti-AFK"] = "防挂机",
+["Keybind"] = "按键绑定",
+["Keybind to open/close UI"] = "用于打开/关闭界面的按键绑定",
+["UI Settings"] = "界面设置",
+["customize UI settings and stuff"] = "自定义界面设置等内容",
+["Theme Select"] = "主题选择",
+["Dark"] = "深色",
+["Transparency"] = "透明度",
+["Enable Dark Mode"] = "启用深色模式",
+["Anonymous Mode"] = "匿名模式",
+["Enable or disable anonymous profile"] = "启用或禁用匿名资料",
+["Enable Profile"] = "启用资料",
+["Show or hide your profile window"] = "显示或隐藏你的资料窗口",
+["Server Join Link"] = "服务器加入链接",
+["More Functions"] = "更多功能",
+["Update Logs"] = "更新日志",
+["Release"] = "发布版本",
+["made on 9/13/25"] = "制作于25年9月13日",
+["Update 1"] = "更新1",
+["[+] added more items to upgrade campfire dropdown and cook food dropdown"] = "[+] 为升级营火下拉列表和烹饪食物下拉列表添加了更多物品",
+["[+] added player ESP"] = "[+] 添加了玩家显示功能",
+["[+] added bring every item and a lot more"] = "[+] 添加了“获取所有物品”功能及更多内容",
+["Update 2"] = "更新2",
+["[+] added a whole bunch of stuff 9/15/25"] = "[+] 25年9月15日添加了大量内容",
+["Update 3"] = "更新3",
+["[+] added air walk"] = "[+] 添加了空中行走功能",
+["[~] improved chop aura kill aura auto eat crafting"] = "[~] 优化了砍伐光环、击杀光环、自动进食、合成功能",
+["[+] added auto open all chest"] = "[+] 添加了自动打开所有宝箱功能",
+["[~] improved bring items"] = "[~] 优化了物品获取功能",
+["[+] added bring to campfire or player"] = "[+] 添加了“获取至营火或玩家”功能",
+["[+] added notify for bringing"] = "[+] 添加了物品获取通知功能",
+["Update 4"] = "更新4",
+["[🐞] fixed little bugs"] = "[🐞] 修复了小漏洞",
+["[+] added auto collect coins 9/20/25"] = "[+] 25年9月20日添加了自动收集硬币功能",
+["Update 5"] = "更新5",
+["[+] added stuff for FPS and Discord invite thing and"] = "[+] 为帧率和Discord邀请功能添加了相关内容",
+["[🐞] fixed chop aura spiking ping/fps I think"] = "[🐞] 我认为修复了砍伐光环导致延迟/帧率骤增的问题",
+["9/20/25"] = "25年9月20日",
+["Update 6"] = "更新6",
+["[~] improved bring all"] = "[~] 优化了“获取全部”功能",
+["[~] improved shared wood items and metal items"] = "[~] 优化了共享木材物品和金属物品",
+["[~] improved upgraded campfire think 9/21/25"] = "[~] 25年9月21日优化了升级后的营火",
+["Update 6-7"] = "更新6-7",
+["[+] added force remove flashlight"] = "[+] 添加了强制移除手电筒功能",
+["[+] added esp and bring frog key"] = "[+] 添加了显示功能和“获取青蛙钥匙”功能",
+["[+] added anti-AFK"] = "[+] 添加了防挂机功能",
+["[🐞] fixed teleport to chest"] = "[🐞] 修复了传送至宝箱功能",
+["[+] added TP to players"] = "[+] 添加了传送至玩家功能"
+}
+
+local function translateText(text)
+    if not text or type(text) ~= "string" then return text end
+    
+    if Translations[text] then
+        return Translations[text]
+    end
+    
+    for en, cn in pairs(Translations) do
+        if text:find(en) then
+            return text:gsub(en, cn)
+        end
+    end
+    
+    return text
+end
+
+local function setupTranslationEngine()
+    local success, err = pcall(function()
+        local oldIndex = getrawmetatable(game).__newindex
+        setreadonly(getrawmetatable(game), false)
+        
+        getrawmetatable(game).__newindex = newcclosure(function(t, k, v)
+            if (t:IsA("TextLabel") or t:IsA("TextButton") or t:IsA("TextBox")) and k == "Text" then
+                v = translateText(tostring(v))
+            end
+            return oldIndex(t, k, v)
+        end)
+        
+        setreadonly(getrawmetatable(game), true)
+    end)
+    
+    if not success then
+        warn("元表劫持失败:", err)
+       
+        local translated = {}
+        local function scanAndTranslate()
+            for _, gui in ipairs(game:GetService("CoreGui"):GetDescendants()) do
+                if (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui] then
+                    pcall(function()
+                        local text = gui.Text
+                        if text and text ~= "" then
+                            local translatedText = translateText(text)
+                            if translatedText ~= text then
+                                gui.Text = translatedText
+                                translated[gui] = true
+                            end
+                        end
+                    end)
+                end
+            end
+            
+            local player = game:GetService("Players").LocalPlayer
+            if player and player:FindFirstChild("PlayerGui") then
+                for _, gui in ipairs(player.PlayerGui:GetDescendants()) do
+                    if (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui] then
+                        pcall(function()
+                            local text = gui.Text
+                            if text and text ~= "" then
+                                local translatedText = translateText(text)
+                                if translatedText ~= text then
+                                    gui.Text = translatedText
+                                    translated[gui] = true
+                                end
+                            end
+                        end)
+                    end
+                end
+            end
+        end
+        
+        local function setupDescendantListener(parent)
+            parent.DescendantAdded:Connect(function(descendant)
+                if descendant:IsA("TextLabel") or descendant:IsA("TextButton") or descendant:IsA("TextBox") then
+                    task.wait(0.1)
+                    pcall(function()
+                        local text = descendant.Text
+                        if text and text ~= "" then
+                            local translatedText = translateText(text)
+                            if translatedText ~= text then
+                                descendant.Text = translatedText
+                            end
+                        end
+                    end)
+                end
+            end)
+        end
+        
+        pcall(setupDescendantListener, game:GetService("CoreGui"))
+        local player = game:GetService("Players").LocalPlayer
+        if player and player:FindFirstChild("PlayerGui") then
+            pcall(setupDescendantListener, player.PlayerGui)
+        end
+        
+        while true do
+            scanAndTranslate()
+            task.wait(3)
+        end
+    end
+end
+
+task.wait(2)
+
+setupTranslationEngine()
+
+local success, err = pcall(function()
+--这下面填加载外部脚本
+loadstring(game:HttpGet("https://nazuro.xyz/99nights"))()
+
+
+
+end)
+
+if not success then
+    warn("加载失败:", err)
+end
