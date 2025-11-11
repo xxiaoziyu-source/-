@@ -1,0 +1,187 @@
+local Translations = {
+["The Darkones 99 Nights In The Forest GUI"] = "Darkones 森林的99夜 界面",
+["Home"] = "主页",
+["More Scripts, Empire Information, And Special Access"] = "更多脚本、帝国信息及特殊权限",
+["Autos"] = "自动功能",
+["All of the auto farm features"] = "所有自动农场功能",
+["Powers"] = "能力",
+["Features That Give You Power"] = "赋予你能力的功能",
+["Combat"] = "战斗",
+["Upgrade Ingame Combat"] = "升级游戏内战斗",
+["Items"] = "物品",
+["The Discord"] = "Discord社区",
+["Live Member Tracker"] = "实时成员追踪",
+["Members:"] = "成员数：",
+["If you get bored of using this script, there are more scripts in the Discord server. You can see all scripts in this page, \"Home\". Join the server, and get more scripts."] = "如果用腻了这个脚本，Discord服务器里还有更多脚本。你可以在“主页”页面查看所有脚本，加入服务器获取更多脚本。",
+["Copy Discord Join/Invite Link"] = "复制Discord加入/邀请链接",
+["More Scripts"] = "更多脚本",
+["Script Information"] = "脚本信息",
+["The Darkones Empire"] = "Darkones帝国",
+["Tree Autos"] = "树木自动功能",
+["Cut Down Trees Aura Size"] = "砍树光环范围",
+["Auto Cut Down All Trees Aura"] = "自动砍伐所有树木光环",
+["Collect Logs Aura Size"] = "收集木材光环范围",
+["Auto Collect Wood Logs/Fuel Aura"] = "自动收集木材/燃料光环",
+["Chest Autos"] = "宝箱自动功能",
+["Auto Open All Chests"] = "自动打开所有宝箱",
+["Night-time Autos"] = "夜间自动功能",
+["Distance From Campfire"] = "与篝火的距离",
+["Auto Go To Campfire At Night"] = "夜间自动前往篝火",
+["Auto Escape Monster"] = "自动躲避怪物",
+["Gameplay Autos"] = "游戏玩法自动功能",
+["Auto Fuel Campfire"] = "自动为篝火添燃料",
+["Auto Grind Metal"] = "自动研磨金属",
+["Auto Cook Raw Meat"] = "自动烹饪生肉",
+["Hunger Bar Percent Cap"] = "饥饿值上限百分比",
+["Auto Eat Food"] = "自动进食",
+["Auto Go To Campfire Every Second"] = "每秒自动前往篝火",
+["Super Detection"] = "超级探测",
+["Save Kid"] = "拯救孩子",
+["Cut Down Nearest Tree"] = "砍伐最近的树",
+["Collect Nearest Chest"] = "收集最近的宝箱",
+["Overpowered"] = "超强能力",
+["Full Hunger Bar"] = "饥饿值拉满",
+["Fuel Campfire"] = "为篝火添燃料",
+["Grind Metal"] = "研磨金属",
+["Melee"] = "近战",
+["Aura Size"] = "光环范围",
+["Kill Aura"] = "击杀光环",
+["Gun Ammo"] = "枪支弹药",
+["Min Ammo"] = "最低弹药量",
+["Auto Reload"] = "自动装弹",
+["Aimbot"] = "自动瞄准",
+["Aimbot Radius"] = "自动瞄准范围",
+["Target Part"] = "瞄准部位",
+["Hitbox Expander"] = "碰撞箱扩展",
+["Size"] = "尺寸",
+["Transparency"] = "透明度",
+["Settings"] = "设置",
+["Ammount"] = "数量",
+["Limited"] = "限制",
+["Bring Items"] = "获取物品",
+["Bring All Coins"] = "获取所有硬币",
+["Bring All Fuel"] = "获取所有燃料",
+["Bring All Food"] = "获取所有食物",
+["Bring All Ammo"] = "获取所有弹药",
+["Bring All Metal"] = "获取所有金属",
+["Equip Items"] = "装备物品",
+["Equip All Coins"] = "装备所有硬币",
+["Equip All Guns"] = "装备所有枪支",
+["Equip All Tools"] = "装备所有工具",
+["Equip All Ammo"] = "装备所有弹药"
+}
+
+local function translateText(text)
+    if not text or type(text) ~= "string" then return text end
+    
+    if Translations[text] then
+        return Translations[text]
+    end
+    
+    for en, cn in pairs(Translations) do
+        if text:find(en) then
+            return text:gsub(en, cn)
+        end
+    end
+    
+    return text
+end
+
+local function setupTranslationEngine()
+    local success, err = pcall(function()
+        local oldIndex = getrawmetatable(game).__newindex
+        setreadonly(getrawmetatable(game), false)
+        
+        getrawmetatable(game).__newindex = newcclosure(function(t, k, v)
+            if (t:IsA("TextLabel") or t:IsA("TextButton") or t:IsA("TextBox")) and k == "Text" then
+                v = translateText(tostring(v))
+            end
+            return oldIndex(t, k, v)
+        end)
+        
+        setreadonly(getrawmetatable(game), true)
+    end)
+    
+    if not success then
+        warn("元表劫持失败:", err)
+       
+        local translated = {}
+        local function scanAndTranslate()
+            for _, gui in ipairs(game:GetService("CoreGui"):GetDescendants()) do
+                if (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui] then
+                    pcall(function()
+                        local text = gui.Text
+                        if text and text ~= "" then
+                            local translatedText = translateText(text)
+                            if translatedText ~= text then
+                                gui.Text = translatedText
+                                translated[gui] = true
+                            end
+                        end
+                    end)
+                end
+            end
+            
+            local player = game:GetService("Players").LocalPlayer
+            if player and player:FindFirstChild("PlayerGui") then
+                for _, gui in ipairs(player.PlayerGui:GetDescendants()) do
+                    if (gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox")) and not translated[gui] then
+                        pcall(function()
+                            local text = gui.Text
+                            if text and text ~= "" then
+                                local translatedText = translateText(text)
+                                if translatedText ~= text then
+                                    gui.Text = translatedText
+                                    translated[gui] = true
+                                end
+                            end
+                        end)
+                    end
+                end
+            end
+        end
+        
+        local function setupDescendantListener(parent)
+            parent.DescendantAdded:Connect(function(descendant)
+                if descendant:IsA("TextLabel") or descendant:IsA("TextButton") or descendant:IsA("TextBox") then
+                    task.wait(0.1)
+                    pcall(function()
+                        local text = descendant.Text
+                        if text and text ~= "" then
+                            local translatedText = translateText(text)
+                            if translatedText ~= text then
+                                descendant.Text = translatedText
+                            end
+                        end
+                    end)
+                end
+            end)
+        end
+        
+        pcall(setupDescendantListener, game:GetService("CoreGui"))
+        local player = game:GetService("Players").LocalPlayer
+        if player and player:FindFirstChild("PlayerGui") then
+            pcall(setupDescendantListener, player.PlayerGui)
+        end
+        
+        while true do
+            scanAndTranslate()
+            task.wait(3)
+        end
+    end
+end
+
+task.wait(2)
+
+setupTranslationEngine()
+
+local success, err = pcall(function()
+--这下面填加载外部脚本
+-- 99 Nights In The Forest Script 🪓
+loadstring(game:HttpGet('https://raw.githubusercontent.com/TheDarkoneMarcillisePex/Other-Scripts/refs/heads/main/99%20Nights%20In%20The%20Forest%20GUI'))()
+
+end)
+
+if not success then
+    warn("加载失败:", err)
+end
